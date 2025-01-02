@@ -5,7 +5,9 @@ import Home from "@/views/index.vue";
 import About from "@/views/About.vue";
 
 import AdminDashboard from "@/views/admin/index.vue";
-import ProductsManage from "@/views/admin/products.vue";
+import ProductsManage from "@/views/admin/products/products.vue";
+import FormProduct from "@/views/admin/products/formProduct.vue";
+import ProductDetails from "@/views/admin/products/productDetails.vue";
 
 const routes = [
   {
@@ -21,7 +23,24 @@ const routes = [
     component: AdminLayout,
     children: [
       { path: "", name: "AdminDashboard", component: AdminDashboard },
-      { path: "products", name: "ProductsManage", component: ProductsManage }
+      {
+        path: "products",
+        children:[
+          { 
+            path: "list", 
+            name: "ProductManage", 
+            component: ProductsManage ,
+            children: [{
+              path: ':id',
+              name: 'ProductDetails',
+              component: ProductDetails,
+              props: true,
+            },
+          ],},
+          { path: "create", name: "CreateProduct", component: FormProduct },
+          { path: "update/:id", name: "UpdateProduct", component: FormProduct }
+        ]
+      }
     ],
   },
 ];
