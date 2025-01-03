@@ -1,4 +1,5 @@
 <template>
+    <Spinner></Spinner>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -33,7 +34,7 @@
             </div>
 
             <li class="nav-item">
-                <router-link to="/admin/products" class="nav-link">
+                <router-link to="/admin/products/list" class="nav-link">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Products</span>
                 </router-link>
@@ -376,6 +377,7 @@
     import Footer from '@/layouts/components/AdminFooter.vue';
 
     import { onMounted } from 'vue';
+    import Spinner from '@/components/Spinner.vue';
 
     var confirmModal = {
             id: "logoutModal",

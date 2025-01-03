@@ -1,45 +1,39 @@
 <template>
     <div>
-        <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Products</h6>
+                <button @click="openForm" class="btn btn-primary btn-icon-split" title="teleport">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                    <span class="text">New Product</span>
+                </button>
                 <router-link :to="{ name: 'CreateProduct' }" class="btn btn-primary btn-icon-split">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
                     <span class="text">New Product</span>
                 </router-link>
-
-
-                <button @click="openForm">Add Product</button>
                 <AddProductForm ref="addProductForm" />
             </div>
             <div class="card-body">
                 <tableProduct></tableProduct>
-                <Spinner :loading="isLoading" />
-                <button @click="toggleLoading">Toggle Loading</button>
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
-import tableProduct from './listProducts.vue'
-import { ref } from 'vue';
-import AddProductForm from './teleportFormProduct.vue';
-import Spinner from '@/components/Spinner.vue';
+    import tableProduct from './listProducts.vue'
+    import { ref } from 'vue';
+    import AddProductForm from './teleportFormProduct.vue';
 
-const addProductForm = ref(null);
-const isLoading = ref(false);
+    const addProductForm = ref(null);
 
-const toggleLoading = () => {
-    isLoading.value = !isLoading.value;
-};
-
-function openForm() {
-    addProductForm.value.openForm();
-}
+    function openForm() {
+        addProductForm.value.openForm();
+    }
 </script>
 
 <style>

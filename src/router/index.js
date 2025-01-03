@@ -8,6 +8,7 @@ import AdminDashboard from "@/views/admin/index.vue";
 import ProductsManage from "@/views/admin/products/products.vue";
 import FormProduct from "@/views/admin/products/formProduct.vue";
 import ProductDetails from "@/views/admin/products/productDetails.vue";
+import Cart from "@/views/Cart.vue";
 
 const routes = [
   {
@@ -16,6 +17,7 @@ const routes = [
     children: [
       { path: "", name: "Home", component: Home },
       { path: "about", name: "About", component: About },
+      { path: "cart", name: "Cart", component: Cart },
     ],
   },
   {

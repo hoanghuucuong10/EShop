@@ -1,27 +1,40 @@
 <template>
-  <div v-if="loading" class="spinner">
-    <div class="dot" style="background-color: #e74c3c;"></div>
-    <div class="dot" style="background-color: #f1c40f;"></div>
-    <div class="dot" style="background-color: #2ecc71;"></div>
+  <div id="overlay" v-if="isLoading" >
+    <div class="spinner">
+      <div class="dot" style="background-color: #e74c3c;"></div>
+      <div class="dot" style="background-color: #f1c40f;"></div>
+      <div class="dot" style="background-color: #2ecc71;"></div>
+    </div>
   </div>
 </template>
 
 <script setup>
-defineProps({
-  loading: {
-    type: Boolean,
-    default: false,
-  },
-});
+
+import { useSpinnerStore } from '@/store/spinnerStore';
+import { computed } from 'vue';
+
+const spinnerStore = useSpinnerStore();
+const isLoading = computed(() => spinnerStore.isLoading);
 </script>
 
 <style scoped>
+ #overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+
 .spinner {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
   height: 40px;
+  margin-top: 300px;
 }
 
 .dot {

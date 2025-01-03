@@ -2,7 +2,6 @@
     <div class="container mt-4">
       <h3 class="mb-4">{{ formTitle }}</h3>
       <form @submit.prevent="submitForm">
-        <!-- Product Name -->
         <div class="form-group">
           <label for="productName">Product Name</label>
           <input
@@ -14,8 +13,6 @@
             required
           />
         </div>
-  
-        <!-- Product Type -->
         <div class="form-group">
           <label for="productType">Product Type</label>
           <select
@@ -30,8 +27,6 @@
             <option value="food">Food</option>
           </select>
         </div>
-  
-        <!-- Price -->
         <div class="form-group">
           <label for="price">Price</label>
           <input
@@ -43,8 +38,6 @@
             required
           />
         </div>
-  
-        <!-- Description -->
         <div class="form-group">
           <label for="description">Description</label>
           <textarea
@@ -55,8 +48,6 @@
             placeholder="Enter product description"
           ></textarea>
         </div>
-  
-        <!-- Quantity -->
         <div class="form-group">
           <label for="quantity">Quantity</label>
           <input
@@ -68,8 +59,7 @@
             required
           />
         </div>
-        <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary">Add Product</button>
+        <button type="submit" class="btn btn-primary">{{ productId == undefined ? "Add" : "Update" }}</button>
       </form>
     </div>
   </template>
@@ -82,7 +72,7 @@
 
     const route = useRoute();
     const productId = route.params.id;
-    const formTitle = productId == 0 ? "Add new product" : "Update product"
+    const formTitle = productId == undefined ? "Add new product" : "Update product"
 
     const product = ref({
           id: 0,

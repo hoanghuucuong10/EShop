@@ -4,44 +4,16 @@
       <form @submit.prevent="submitForm">
         <!-- Product Name -->
         <div class="form-group">
-          <label for="productName">Product Name</label>
-          <input
-            type="text"
-            class="form-control"
-            id="productName"
-            v-model="product.name"
-            placeholder="Enter product name"
-            required
-          />
+          <label for="productName">Product Name: {{ product.name }}</label>
         </div>
-  
         <!-- Product Type -->
         <div class="form-group">
-          <label for="productType">Product Type</label>
-          <select
-            class="form-control"
-            id="productType"
-            v-model="product.type"
-            required
-          >
-            <option value="">-- Select product type --</option>
-            <option value="electronic">Electronic</option>
-            <option value="fashion">Fashion</option>
-            <option value="food">Food</option>
-          </select>
+          <label for="productType">Product Type: {{ product.type }}</label>
         </div>
   
         <!-- Price -->
         <div class="form-group">
-          <label for="price">Price</label>
-          <input
-            type="number"
-            class="form-control"
-            id="price"
-            v-model="product.price"
-            placeholder="Enter product price"
-            required
-          />
+          <label for="price">Price: {{ product.price }}</label>
         </div>
   
         <!-- Description -->
@@ -58,15 +30,7 @@
   
         <!-- Quantity -->
         <div class="form-group">
-          <label for="quantity">Quantity</label>
-          <input
-            type="number"
-            class="form-control"
-            id="quantity"
-            v-model="product.quantity"
-            placeholder="Enter quantity"
-            required
-          />
+          <label for="quantity">Quantity: {{ product.quantity }}</label>
         </div>
       </form>
     </div>
@@ -103,7 +67,6 @@
         }
       }
     });
-      
   </script>
   
   <style scoped>
