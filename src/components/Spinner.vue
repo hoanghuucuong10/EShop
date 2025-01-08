@@ -9,12 +9,7 @@
 </template>
 
 <script setup>
-
-import { useSpinnerStore } from '@/store/spinnerStore';
-import { computed } from 'vue';
-
-const spinnerStore = useSpinnerStore();
-const isLoading = computed(() => spinnerStore.isLoading);
+import { isLoading } from "@/untils/axiosInstance";
 </script>
 
 <style scoped>

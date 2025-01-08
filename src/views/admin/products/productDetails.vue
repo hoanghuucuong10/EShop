@@ -38,7 +38,7 @@
   
   <script setup>
     import {ref, onMounted } from 'vue';
-    import axios from 'axios';
+    import axiosInstance from '@/untils/axiosInstance';
     import { useRoute } from 'vue-router';
 
     const route = useRoute();
@@ -57,7 +57,7 @@
     onMounted(() => {
       if (productId) {
         if (productId) {
-          axios.get(`http://localhost:3000/products/${productId}`)
+          axiosInstance.get(`${productId}`)
             .then(response => {
               product.value = response.data;
             })

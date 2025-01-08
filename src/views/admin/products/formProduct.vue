@@ -66,7 +66,7 @@
   
   <script setup>
     import {ref, onMounted } from 'vue';
-    import axios from 'axios';
+    import axiosInstance from '@/untils/axiosInstance';
     import { useRoute } from 'vue-router';
     import router from "@/router";
 
@@ -86,7 +86,7 @@
     onMounted(() => {
       if (productId) {
         if (productId) {
-          axios.get(`http://localhost:3000/products/${productId}`)
+          axiosInstance.get(`products/${productId}`)
             .then(response => {
               product.value = response.data;
             })
@@ -99,7 +99,7 @@
       
     async function submitForm() {
       if (productId) {
-        await axios.put(`http://localhost:3000/products/${productId}`, product.value)
+        await axiosInstance.put(`${productId}`, product.value)
           .then(response => {
             console.log('Product updated successfully:', response.data);
             router.push('/admin/products/list');
@@ -117,7 +117,7 @@
           quantity: product.value.quantity,
         };
 
-        await axios.post("http://localhost:3000/products", productData) .then(response => {
+        await axiosInstance.post("products", productData) .then(response => {
             console.log('Product created successfully:', response.data);
             router.push('/admin/products/list');
           })

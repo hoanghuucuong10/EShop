@@ -49,24 +49,19 @@
     import '@/assets/vendor/datatables/dataTables.bootstrap4'
     import '@/assets/js/demo/datatables-demo'
 
-    import axios from 'axios';
     import { onBeforeMount, ref } from 'vue';
 
-    import { useSpinnerStore } from '@/store/spinnerStore';
+    import axiosInstance from '@/untils/axiosInstance';
 
     const products = ref([]);
-    const spinnerStore = useSpinnerStore();
 
     onBeforeMount(async () => {
         try {
-            spinnerStore.showSpinner()
-            const response = await axios.get('http://localhost:3000/products');
+            const response = await axiosInstance.get('products');
             products.value = response.data;
         } catch (error) {
             console.error('Failed to load products');
             console.error(error);
-        } finally {
-            spinnerStore.hideSpinner()
         }
     });
 
@@ -74,15 +69,13 @@
       try {
         const confirmed = confirm("Are you sure you want to delete this product?");
         if (!confirmed) return;
-        spinnerStore.showSpinner()
-        await axios.delete(`http://localhost:3000/products/${productId}`);
+        
+        await axiosInstance.delete(`http://localhost:3000/products/${productId}`);
 
         alert("Product deleted successfully!");
       } catch (error) {
         console.error("Failed to delete product:", error);
         alert("Failed to delete product.");
-      } finally {
-        spinnerStore.hideSpinner()
       }
     }
 </script>
