@@ -50,12 +50,35 @@ const routes = [
         ]
       }
     ],
+    meta: { requiresAuth: true, role: 'admin' },
   },
 ];
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  debugger
+  const isAuthenticated = !!localStorage.getItem('accessToken');
+  const userRole = localStorage.getItem('role');
+
+  if (to.meta.requiresAuth) {
+    if (!isAuthenticated) {
+      return next({ path: '/login' });
+    }
+
+    if (to.meta.role && to.meta.role !== userRole) {
+      if (userRole === 'admin') {
+        return next('/admin/dashboard');
+      } else {
+        return next('/');
+      }
+    }
+  }
+
+  next();
 });
 
 export default router;

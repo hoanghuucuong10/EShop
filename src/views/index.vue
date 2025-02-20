@@ -1,13 +1,14 @@
 <template>
   <div class="container">
     <div class="row">
-      <div
+      <ProductCarousel :products="products" />
+      <!-- <div
         class="item-container col-md-3"
         v-for="product in products"
         :key="product.id"
       >
         <productItem :product="product" :add-to-cart="addToCart" ></productItem>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -17,6 +18,7 @@
   import axios from 'axios';
   import { useCartStore } from '@/store/cartStore';
   import productItem from './components/productItem.vue';
+  import ProductCarousel from './components/ProductCarousel.vue';
 
   const cartStore = useCartStore();
 
